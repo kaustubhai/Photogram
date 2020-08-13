@@ -20,9 +20,18 @@ function App() {
     url: 'https://images.pexels.com/photos/2026452/pexels-photo-2026452.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1500'
   }]);
 
-  const removePost = (removePhoto) => {
+  const [ID, updateId] = useState(3);
+
+  const removePost = (removePhoto, i) => {
     const arr = photos.filter(photo => photo !== removePhoto)
     updateP(arr);
+    updateId(i);
+  }
+
+  const toAppend = (post, i) => {
+    const arr = photos.concat(post);
+    updateP(arr);
+    updateId(i);
   }
   
   return (
@@ -30,14 +39,14 @@ function App() {
       <Route exact path = "/" render = {() => (
         <div>
         <h1>Ph<span>o</span>t<span>o</span>gram</h1>
-        <Grid toRemove={(q) => {removePost(q)}} posts={photos} />
+        <Grid Id={ID} toRemove={(q, i) => {removePost(q, i)}} posts={photos} />
         </div>
       )} />
       <Route exact path = "/AddPhoto" render = {() => (
         <div>
         <h1>Ph<span>o</span>t<span>o</span>gram</h1>
         <h2>Add your photo here</h2>
-        <Form/>
+        <Form Id={ID} toAppend={toAppend} />
         </div>
       )} />
     </div>

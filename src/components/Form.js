@@ -1,11 +1,27 @@
-import React from 'react'
+import React from 'react';
+import { useHistory } from "react-router-dom";
 
-export const Form = () => {
+const Form = ({toAppend}, Id) => {
+    let history = useHistory()
+
+    const formSubmitted = (e) => {
+        e.preventDefault();
+        const url = e.target.elements.url.value;
+        const desc = e.target.elements.des.value;
+        let ar = {
+            id: 0,
+            title: desc,
+            url: url
+        };
+        toAppend(ar, ++Id);
+        history.push("/");
+    }
+
     return (
             <center>
-            <form>
-            <input className="form-input" type="text" placeholder="Enter a Suitable Title" />
-            <input className="form-input" type="text" placeholder="Enter the URL of the image" />
+            <form onSubmit={formSubmitted}>
+            <input className="form-input" type="text" name="des" placeholder="Enter a Suitable Title" mandatory />
+            <input className="form-input" type="text" name="url" placeholder="Enter the URL of the image" mandatory />
             <button className="form-button">Submit</button>
             </form>
             </center>
