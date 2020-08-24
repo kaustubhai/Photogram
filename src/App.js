@@ -1,37 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from './components/Grid';
 import Form from './components/Form';
-import {Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import db from './firebase/config';
+import firebase from 'firebase';
 import './App.css';
 
 function App() {
 
-  const [photos, updateP] = useState([{
-    id: 0,
-    title: "First photo",
-    url: 'https://images.pexels.com/photos/4849116/pexels-photo-4849116.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-  },{
-    id: 1,
-    title: "Laddakh",
-    url: 'https://www.holidify.com/images/bgImages/LADAKH.jpg'
-  },{
-    id: 2,
-    title: "Switzerland",
-    url: 'https://images.pexels.com/photos/2026452/pexels-photo-2026452.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1500'
-  }]);
+  const [photos, updateP] = useState([]);
 
-  const [ID, updateId] = useState(3);
+  const [ID, updateId] = useState(0);
 
-  const removePost = (removePhoto, i) => {
-    const arr = photos.filter(photo => photo !== removePhoto)
-    updateP(arr);
-    updateId(i);
+  //getting data
+  useEffect(() => {
+    db.collection('photos')
+      .orderBy('id')
+      .onSnapshot(photo => updateP(photo.docs.map(doc => ({ id: doc.id, data: doc.data() }))));
+    updateId(photos.length)
+  }, [])
+
+  //putting data
+  const toAppend = (post, i) => {
+    db.collection('photos').add({
+        url: post.url,
+        title: post.title,
+        id: i
+    })
+    updateId(photos.length)
   }
 
-  const toAppend = (post, i) => {
-    const arr = photos.concat(post);
-    updateP(arr);
-    updateId(i);
+  const removePost = (removePhoto, i) => {
+    var R = db.collection('photos').where('url', '==', `${removePhoto.url}`);
+    R.get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        doc.ref.delete();
+      });
+    })
+    // const arr = photos.filter(photo => photo.data !== removePhoto)
+    // updateP(arr);
+    
+    updateId(photos.length)
   }
   
   return (

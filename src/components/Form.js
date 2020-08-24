@@ -9,7 +9,7 @@ const Form = ({toAppend}, Id) => {
         const url = e.target.elements.url.value;
         const desc = e.target.elements.des.value;
         let ar = {
-            id: 0,
+            id: Id,
             title: desc,
             url: url
         };
