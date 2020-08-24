@@ -108,6 +108,15 @@ form{
   background-color: rgb(241, 241, 241);
   font-size: 1rem;
 }
+.fa-times-circle{
+  margin-right: -200px;
+}
+.fa-external-link-alt{
+  color: rgb(51, 51, 177);
+  padding-left: 5px;
+  margin-right: 50px;
+  z-index: 1;
+}
 .form-button{
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
@@ -132,5 +141,13 @@ form{
   }
   .fa-plus-circle{
     margin-bottom: 0px;
+  }
+  .fa-times-circle{
+    font-size: 1.5rem;
+    margin-right: -190px
+  }
+  .fa-download{
+    font-size: 1.5rem;
+    margin-right: 30px
   }
 }

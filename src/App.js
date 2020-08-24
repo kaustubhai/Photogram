@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     db.collection('photos')
       .orderBy('id')
-      .onSnapshot(photo => updateP(photo.docs.map(doc => ({ id: doc.id, data: doc.data() }))));
+      .onSnapshot(photo => updateP(photo.docs.map(doc => (doc.data()))));
     updateId(photos.length)
   }, [])
 
