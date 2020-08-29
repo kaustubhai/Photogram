@@ -100,13 +100,14 @@ form{
 }
 .form-input{
   width: 100%;
-  padding: 5px 15px;
+  padding: 10px 15px;
   margin: 5px;
   border-radius: 5px;
   outline: none;
   border: none;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(250, 250, 250);
   font-size: 1rem;
+  border-bottom: 2px solid red;
 }
 .fa-times-circle{
   margin-right: -200px;
@@ -121,8 +122,55 @@ form{
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   text-align: center;
-  padding-top: 35px;
-  padding-bottom: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: red;
+  padding: 5px 15px;
+  border-radius: 10px;
+  color: white;
+}
+
+.container-cards{
+  position: abdolute;
+  width: 75%;
+  height: fit-content;
+  margin: auto;
+  font-size: 1rem;
+  padding: 15px;
+  border-radius: 5px;
+}
+.info-icon{
+  position: absolute;
+  margin-left: 20%;
+  margin-top: -1%;
+}
+.info1{
+  background-color: rgba(255, 255, 0, 0.030);
+  color: rgb(211, 166, 2);
+  border: 2px solid rgb(255, 200, 0);
+  margin-top: 120px;
+}
+.info2{
+  background-color: rgba(255, 0, 0, 0.030);
+  color: rgb(236, 0, 0);
+  border: 2px solid rgb(236, 0, 0);
+  margin-top: 10px;
+}
+.info3{
+  background-color: rgba(25, 0, 255, 0.030);
+  color: rgb(25, 0, 255);
+  border: 2px solid rgb(25, 0, 255);
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+.info1.info-icon{
+  color: rgb(233, 182, 0);
+}
+.info2.info-icon{
+  color: rgb(236, 0, 0);
+}
+.info3.info-icon{
+  color: rgb(25, 0, 255);
 }
 @media only screen and (max-width: 768px){
   h1{
@@ -150,4 +198,13 @@ form{
     font-size: 1.5rem;
     margin-right: 30px
   }
+  .container-cards{
+    width: 100%;
+  }
+  .info-icon{
+    position: absolute;
+    margin-left: 33%;
+    margin-top: -6%;
+  }
 }
+
