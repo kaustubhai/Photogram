@@ -29,9 +29,7 @@ h2{
 span{
   color: red;
 }
-.grid{
-  display: flex;
-}
+
 .card{
   background-color: white;
   width: 48%;
